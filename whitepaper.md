@@ -14,7 +14,7 @@ While Lambda was certainly an eye-opener for a lot of people, it suffered from a
 
 Kappa provided a simplification by dropping the batch processing and allowing all processing to happen through the realtime processing algorithms. Generated views could be reprocessed by replaying the raw events, but that posed some major operational challenges in order to keep the system consistent.
 
-Dataprism implements the Kappa architecture and proposes best practices to extend the base architecture in order get the most out realtime data processing.
+Dataprism implements the Kappa architecture and proposes best practices to extend the base architecture in order get the most out of realtime data processing.
 
 ## Problem Description
 
@@ -61,17 +61,31 @@ A lot of things are coming together here and raise some important new questions:
 
 These, and probably a lot more questions all need to be answered to build a robust processing component.
 
-### Serving Data
+### Serving Information
 
-If all goes well, the RAW data is being converted into queriable data.
+While the data processing is meant to convert the RAW data into information, something needs to be done with that information to make it available to applications and end-users. Often this means storing that information inside a datastore of some sort allowing end-users and applications to make connections to these datastores and query the information in it.
+
+However, the structure of the data often depends on the type of data store being used. Storing information in a relational database (RDBMS) for example requires the information to be structure in a totally different way then if we would be storing it in a document store.
 
 ### Operating
 
+Operating a stack of technologies is always a challenging task due to the complexities of making all technologies work together. Distributed stacks like the ones used within the bigdata ecosystem are even more complex, for a number of reasons. For example, latencies between the nodes on which the technologies are running as well as individual node failures increases the complexity level of the stack significantly.
+
+Monitoring and alerts are required to get a grasp on what is happening within the stack and across all the nodes of the system. But that raises another question; What exactly do we need to track and monitor? Which metrics matter in which kind of situation?
+
 ### Replaying
+
+An important aspect of a Kappa based architecture is the ability to recalculate the information since it gives the architecture the capability to recover from human errors. But while the idea behind it is rather simple, the implementation most certainly is not.
+
+Should you keep the "invalid" information available for as long as the replaying is going on, or is it allowed to just drop the information and start from a clean slate? Do you replay everything, or can we replay only portions?
+
+All these questions add up to result in a very interesting problem space.
 
 ### Snapshotting
 
+As explained during processing, the RAW data is being stored in order to be able to replay and reprocess. However since that RAW data is an ever-growing collection of data, the amount of time it takes to replay the RAW data will keep on rizing as well.
 
+One way of keeping the reprocess durations manageable is to perform snapshots of the raw data using a moving aggregated baseline 
 
 ## High-Level Solution
 
