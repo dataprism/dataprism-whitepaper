@@ -6,6 +6,16 @@ This paper describes dataprism, a platform implementing the kappa architecture b
 
 ## Introduction
 
+Organisations are constantly at a quest to improve themselves and to get closer to their users or customers. Analyzing data has proven to be a very powerfull way of doing so, but while during the last decade analysis focussed on data produced by the organisation's business processes, today combining internal with external data appears to be the way to go to.
+
+The data landscape within an organisation is very fragmented. Multiple tools collect, process and visualize insights for different purposes. While these services certainly have their value, it becomes hard to track which data is stored where and for which purpose, not only for the operators and engineers, but also for scientists who want to use that data to try and find the hidden treasures. Furthermore, the rate at which a data fragment loses value has increased a lot, requirering near-realtime insights.
+
+Event-sourcing architectures like the kappa architecture are a perfect match to deal with high-velocity data and provide scalability as well as human fault-tolerance. Due to their nature however, technologies included in these architectures are complex and tedious to maintain.
+
+Dataprism is an effort to take such an event-sourcing architecture to the next level by implementing the architecture and taking away the tedious work related to keeping such an architecture up and running.
+
+## History
+
 Back at the beginning of the bigdata hype, all processing was focussed around processing large batches of data using rather low-level technologies like map-reduce. Additional processing technologies like pig and cascading were developed to make processing applications easier to comprehend and more productive to develop, but it remained batch processing. 
 
 Things changed with the introduction of the lambda architecture, providing a seemingly straightforward way of processing data not only in batch, but also in realtime. Through a combination of layers data was processed in batch while at the same time new data not included in the batch was being captured through a speedy processing layer. By combining both the results of the batch and speed calculations, a eventual-accurate informational view could be presented.
@@ -79,7 +89,7 @@ An important aspect of a Kappa based architecture is the ability to recalculate 
 
 Should you keep the "invalid" information available for as long as the replaying is going on, or is it allowed to just drop the information and start from a clean slate? Do you replay everything, or can we replay only portions?
 
-All these questions add up to result in a very interesting problem space.
+All these questions add up to a very interesting problem space.
 
 ### Snapshotting
 
