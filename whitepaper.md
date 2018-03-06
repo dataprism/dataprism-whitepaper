@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This paper describes dataprism, a platform implementing the kappa architecture by leveraging apache Kafka and other opensource technologies. Special care is taken to making the platform easy to maintain and extend.
+This paper describes dataprism, a platform implementing the kappa architecture by leveraging Apache Kafka and other opensource technologies. Special care is taken to making the platform easy to maintain and extend.
 
 ## Introduction
 
@@ -16,7 +16,7 @@ Dataprism is an effort to take such an event-sourcing architecture to the next l
 
 ## History
 
-Back at the beginning of the bigdata hype, all processing was focussed around processing large batches of data using rather low-level technologies like map-reduce. Additional processing technologies like pig and cascading were developed to make processing applications easier to comprehend and more productive to develop, but it remained batch processing. 
+Back at the beginning of the big data hype, all processing was focussed around processing large batches of data using rather low-level technologies like map-reduce. Additional processing technologies like Pig and Cascading were developed to make processing applications easier to comprehend and more productive to develop, but it remained batch processing. 
 
 Things changed with the introduction of the lambda architecture, providing a seemingly straightforward way of processing data not only in batch, but also in realtime. Through a combination of layers data was processed in batch while at the same time new data not included in the batch was being captured through a speedy processing layer. By combining both the results of the batch and speed calculations, a eventual-accurate informational view could be presented.
 
@@ -46,9 +46,9 @@ As we will see later on, these parts add more requirements on top of the system.
 
 ### Ingesting Data
 
-Ingesting data is the process of accepting data into the system. Data can be ingested from a veriaty of different systems and technologies. For example, the data could be provided through an api which has to be polled at a specific interval, or the ingestion layer can provide its own API for other system to send data to. Apart from API access, Services busses and relational data stores are quite common within organisations so there should also be a means to extract data from these technologies as well.
+Ingesting data is the process of accepting data into the system. Data can be ingested from a variety of different systems and technologies. For example, the data could be provided through an API which has to be polled at a specific interval, or the ingestion layer can provide its own API for other system to send data to. Apart from API access, Services busses and relational data stores are quite common within organisations so there should also be a means to extract data from these technologies as well.
 
-Due to the veriaty as well as the different accessing paradigms (pull/push) throughout the data providing systems, the ingestion part rapidly increases in complexity. It becomes a very tedious job to control and operate all the different connectors to the systems from which data is to retrieved.
+Due to the variety as well as the different accessing paradigms (pull/push) throughout the data providing systems, the ingestion part rapidly increases in complexity. It becomes a very tedious job to control and operate all the different connectors to the systems from which data is to retrieved.
 
 Even for a single connector, the ability should exist to scale the number of jobs gathering or retrieving the data from the external data systems, not only for performance reasons, but also to be resilient to failure. 
 
@@ -75,7 +75,7 @@ These, and probably a lot more questions all need to be answered to build a robu
 
 While the data processing is meant to convert the RAW data into information, something needs to be done with that information to make it available to applications and end-users. Often this means storing that information inside a datastore of some sort allowing end-users and applications to make connections to these datastores and query the information in it.
 
-However, the structure of the data often depends on the type of data store being used. Storing information in a relational database (RDBMS) for example requires the information to be structure in a totally different way then if we would be storing it in a document store.
+However, the structure of the data often depends on the type of data store being used. Storing information in a relational database (RDBMS) for example requires the information to be structured in a totally different way than if we would be storing it in a document store.
 
 ### Operating
 
